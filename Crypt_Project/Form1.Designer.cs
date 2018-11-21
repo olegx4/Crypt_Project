@@ -41,6 +41,7 @@
             this.textLine.Name = "textLine";
             this.textLine.Size = new System.Drawing.Size(447, 20);
             this.textLine.TabIndex = 0;
+            this.textLine.Text = "Введіть, будь ласка, ваш текст ";
             // 
             // encrypt
             // 
