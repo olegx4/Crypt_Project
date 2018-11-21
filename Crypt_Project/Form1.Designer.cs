@@ -68,6 +68,7 @@
             this.enCryptText.Name = "enCryptText";
             this.enCryptText.Size = new System.Drawing.Size(447, 20);
             this.enCryptText.TabIndex = 3;
+            this.enCryptText.Text = "Зашифрований текст";
             // 
             // deCryptText
             // 
