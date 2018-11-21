@@ -76,6 +76,7 @@
             this.deCryptText.Name = "deCryptText";
             this.deCryptText.Size = new System.Drawing.Size(447, 20);
             this.deCryptText.TabIndex = 4;
+            this.deCryptText.Text = "Розшифрований текст";
             // 
             // Form1
             // 
