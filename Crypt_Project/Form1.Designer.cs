@@ -82,7 +82,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(516, 360);
+            this.ClientSize = new System.Drawing.Size(516, 230);
             this.Controls.Add(this.deCryptText);
             this.Controls.Add(this.enCryptText);
             this.Controls.Add(this.Decrypt);
