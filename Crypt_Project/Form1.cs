@@ -21,15 +21,18 @@ namespace Crypt_Project
         //'И','І','Ї','Й','К','Л','М','Н','О','П',
         //'Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ',
         //'Ь','Ю','Я'
-        String Alphabet = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ" +
+        static String Alphabet = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ" +
                           "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя";
+        static int FreeSpace = 40;
+        static int LettersInLine = 11;
+        int NumberOfRows = Alphabet.Length / LettersInLine;
         Font font = new Font("Times New Roman", 15.0f);
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            for (int j = 0; j < 6 ; j++)
-                for (int i=0; i<11; i++ )
-                    TextRenderer.DrawText(e.Graphics, Alphabet[i + (11 * j)].ToString(), font,
-                    new Point(10 + (30 * i), 10+(30 * j)), SystemColors.ControlDark);
+            for (int j = 0; j < NumberOfRows ; j++)
+                for (int i=0; i < LettersInLine; i++ )
+                    TextRenderer.DrawText(e.Graphics, Alphabet[i + (LettersInLine * j)].ToString(), font,
+                    new Point(10 + (FreeSpace * i), 10+(FreeSpace * j)), SystemColors.ControlDarkDark);
         }
     }
 
