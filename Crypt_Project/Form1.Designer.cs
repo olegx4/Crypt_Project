@@ -33,6 +33,8 @@
             this.Decrypt = new System.Windows.Forms.Button();
             this.enCryptText = new System.Windows.Forms.TextBox();
             this.deCryptText = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // textLine
@@ -78,18 +80,29 @@
             this.deCryptText.TabIndex = 4;
             this.deCryptText.Text = "Розшифрований текст";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(25, 241);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(446, 239);
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(516, 230);
+            this.ClientSize = new System.Drawing.Size(516, 502);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.deCryptText);
             this.Controls.Add(this.enCryptText);
             this.Controls.Add(this.Decrypt);
             this.Controls.Add(this.encrypt);
             this.Controls.Add(this.textLine);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Шифр Гронсфельда";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -102,6 +115,7 @@
         private System.Windows.Forms.Button Decrypt;
         private System.Windows.Forms.TextBox enCryptText;
         private System.Windows.Forms.TextBox deCryptText;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
