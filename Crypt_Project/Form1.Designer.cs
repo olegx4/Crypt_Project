@@ -43,7 +43,8 @@
             this.textLine.Name = "textLine";
             this.textLine.Size = new System.Drawing.Size(447, 20);
             this.textLine.TabIndex = 0;
-            this.textLine.Text = "Введіть, будь ласка, ваш текст ";
+            this.textLine.Text = "маг";
+            this.textLine.TextChanged += new System.EventHandler(this.textLine_TextChanged);
             // 
             // encrypt
             // 
@@ -54,6 +55,7 @@
             this.encrypt.TabIndex = 1;
             this.encrypt.Text = "Зашифрувати";
             this.encrypt.UseVisualStyleBackColor = false;
+            this.encrypt.MouseClick += new System.Windows.Forms.MouseEventHandler(this.encrypt_MouseClick);
             // 
             // Decrypt
             // 
@@ -84,7 +86,7 @@
             // 
             this.pictureBox1.Location = new System.Drawing.Point(25, 241);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(446, 239);
+            this.pictureBox1.Size = new System.Drawing.Size(446, 364);
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
@@ -93,7 +95,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(516, 502);
+            this.ClientSize = new System.Drawing.Size(492, 617);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.deCryptText);
             this.Controls.Add(this.enCryptText);
