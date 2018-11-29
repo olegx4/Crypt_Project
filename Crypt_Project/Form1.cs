@@ -17,7 +17,6 @@ namespace Crypt_Project
         {
             InitializeComponent();
             stringToArray(CryptCode, ref array);
-            
         }
 
         //'А','Б','В','Г','Ґ','Д','Е','Є','Ж','З',
@@ -34,7 +33,6 @@ namespace Crypt_Project
         bool flag = false; // флаг для обновление строки с зашифрованным текстом
         int NumberOfRows = Alphabet.Length / LettersInLine;
         Font font = new Font("Times New Roman", 18.0f); //18
-        
 
         public void stringToArray(string inputString, ref int[] array) // разделяет входящую строку на цифры и помещает в массив 
         {
@@ -59,75 +57,57 @@ namespace Crypt_Project
             array = list.ToArray();
         }
 
-        public void EncryptString(string CryptCode, string InputString, ref string Output)
-        {
-            int[] array = new int[] { };
-            stringToArray(CryptCode, ref array);
-            int j = 0, IndexOfLetter = 0;
-            for (int i = 0; i < InputString.Length; i++)
-            {
-                if (InputString[i] != ' ')
-                {
-                    IndexOfLetter = Alphabet.IndexOf(InputString[i]) + array[j]; //гггггггггггггггггггггггггггггггг
-                    if (IndexOfLetter > Alphabet.Length)
-                        IndexOfLetter = IndexOfLetter - Alphabet.Length;
-                    else if (IndexOfLetter < 0)
-                        IndexOfLetter = Alphabet.Length + IndexOfLetter;
-                    Output += Alphabet[IndexOfLetter];
-                    if (j < array.Length - 1)
-                    {
-                        j++;
-                    }
-                    else
-                        j = 0;
-                }
-                else
-                    Output += " ";
-            }
-        }
-
         public void EncrypCharacter(int CryptNumb, char InputChar, ref char OutputChar)
         {
-            int j = 0, IndexOfLetter = 0;
+            int IndexOfLetter = 0;
             if (InputChar != ' ')
             {
-                IndexOfLetter = Alphabet.IndexOf(InputChar) + CryptNumb; //гггггггггггггггггггггггггггггггг
-                if (IndexOfLetter > Alphabet.Length)
-                    IndexOfLetter = IndexOfLetter - Alphabet.Length;   //TODO дописать -1, если индекс не найден.
-                else if (IndexOfLetter < 0)
-                    IndexOfLetter = Alphabet.Length + IndexOfLetter;
-                OutputChar = Alphabet[IndexOfLetter];
-              
+                if (Alphabet.IndexOf(InputChar) != -1)
+                {
+                    IndexOfLetter = Alphabet.IndexOf(InputChar) + CryptNumb; //Криптографическая стойкость – способность криптографического алгоритма противостоять криптоанализу
+
+                    if (IndexOfLetter >= Alphabet.Length)
+                        IndexOfLetter = IndexOfLetter - Alphabet.Length;   //TODO дописать -1, если индекс не найден.
+                    else if (IndexOfLetter < 0)
+                        IndexOfLetter = Alphabet.Length + IndexOfLetter;
+                    OutputChar = Alphabet[IndexOfLetter];
+                }
+                else
+                {
+                    MessageBox.Show("Символ " + InputChar + " не є символом вхідного алфавіту ");
+                    OutputChar = '-';
+                    return;
+                }
             }
             else
                 OutputChar = ' ';
 
         }
 
-        public void DecryptString(string CryptCode, string InputString, ref string Output)
+        public void CryptString(string CryptCode, string InputString, ref string Output, bool decrypt)
         {
-            int[] array = new int[] { };
-            stringToArray(CryptCode, ref array);
-            int j = 0, IndexOfLetter = 0;
+            //int[] array = new int[] { };
+            //stringToArray(CryptCode, ref array);
+            int j = 0;
+            char outputChar = ' ';
             for (int i = 0; i < InputString.Length; i++)
             {
-                if (InputString[i] != ' ')
+                if (decrypt)
                 {
-                    IndexOfLetter = Alphabet.IndexOf(InputString[i]) - array[j]; //гггггггггггггггггггггггггггггггг
-                    if (IndexOfLetter > Alphabet.Length)
-                        IndexOfLetter = IndexOfLetter - Alphabet.Length;
-                    else if (IndexOfLetter < 0)
-                        IndexOfLetter = Alphabet.Length + IndexOfLetter;
-                    Output += Alphabet[IndexOfLetter];
-                    if (j < array.Length - 1)
-                    {
-                        j++;
-                    }
-                    else
-                        j = 0;
+                    EncrypCharacter(-array[j], InputString[i], ref outputChar);
                 }
                 else
-                    Output += " ";
+                    EncrypCharacter(array[j], InputString[i], ref outputChar);
+                if (j < array.Length - 1)
+                {
+                    j++;
+                }
+                else
+                    j = 0;
+                if (outputChar != '-')
+                    Output += outputChar;
+                else
+                    return;
             }
         }
 
@@ -137,10 +117,12 @@ namespace Crypt_Project
                 for (int i = 0; i < LettersInLine; i++)
                     TextRenderer.DrawText(e.Graphics, Alphabet[i + (LettersInLine * j)].ToString(), font,
                     new Point(10 + (FreeSpace * i), 60 + (FreeSpace * j)), SystemColors.ControlDarkDark, TextFormatFlags.WordBreak);
-            string InputText = textLine.Text;
-            for (int j = 0; j < NumberOfRows; j++)
-                TextRenderer.DrawText(e.Graphics, InputText, font,
-                    new Point(0, 0), SystemColors.ControlDarkDark, TextFormatFlags.WordBreak);
+            //string InputText += InputText[i];
+            //TextRenderer.DrawText(e.Graphics, InputText, font,
+            //        new Point(0, 0), SystemColors.ControlDarkDark);
+            //for (int j = 0; j < 2; j++)
+            //    TextRenderer.DrawText(e.Graphics, InputText, font,
+            //        new Point(0, 0), SystemColors.ControlDarkDark, TextFormatFlags.WordBreak);
             TextRenderer.DrawText(e.Graphics, CryptCode, font,
                     new Point(0, 30), SystemColors.ControlDarkDark);
         }
@@ -149,24 +131,25 @@ namespace Crypt_Project
         {
             string InputText = textLine.Text;
             string Output = "";
-            EncryptString(CryptCode, InputText, ref Output);
+            bool decrypt = false;
+            CryptString(CryptCode, InputText, ref Output, decrypt);
             enCryptText.Text = Output;
             refresh_stepEnCrypt();
         }
 
         private void textLine_TextChanged(object sender, EventArgs e)
         {
-            pictureBox1.Refresh();
-            refresh_stepEnCrypt();
+            pictureBox1.Refresh(); 
+            refresh_stepEnCrypt(); //если входящий текст меняется - обнулить данные  для пошагового шифрования
         }
 
         private void Decrypt_Click(object sender, EventArgs e)
         {
             string InputText = enCryptText.Text;
             string Output = "";
-            DecryptString(CryptCode, InputText, ref Output);
+            bool decrypt = true;
+            CryptString(CryptCode, InputText, ref Output, decrypt);
             deCryptText.Text = Output;
-            //refresh_stepEnCrypt();
         }
 
         void refresh_stepEnCrypt()
@@ -174,6 +157,11 @@ namespace Crypt_Project
             flag = true;
             i = 0;
             j = 0;
+        }
+
+        private void enCryptText_TextChanged(object sender, EventArgs e)
+        {
+            pictureBox1.Refresh();
         }
 
         private void stepEnCrypt_Click(object sender, EventArgs e)
@@ -185,7 +173,7 @@ namespace Crypt_Project
                 enCryptText.Text = "";
                 flag = false;
             }
-            if (i < InputText.Length )
+            if (i < InputText.Length)
             {
                 EncrypCharacter(array[j], InputText[i], ref OutputChar);
 
@@ -193,7 +181,7 @@ namespace Crypt_Project
                 if (OutputChar != ' ')
                     j++;
             }
-            
+
             i++;
             if (i == InputText.Length)
             {
@@ -204,8 +192,6 @@ namespace Crypt_Project
             {
                 j = 0;
             }
-            
-            
         }
     }
 

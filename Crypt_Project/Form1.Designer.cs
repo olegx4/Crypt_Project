@@ -43,9 +43,11 @@
             // 
             // textLine
             // 
-            this.textLine.Location = new System.Drawing.Point(25, 49);
+            this.textLine.Location = new System.Drawing.Point(24, 44);
+            this.textLine.Multiline = true;
             this.textLine.Name = "textLine";
-            this.textLine.Size = new System.Drawing.Size(447, 20);
+            this.textLine.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textLine.Size = new System.Drawing.Size(447, 49);
             this.textLine.TabIndex = 0;
             this.textLine.Text = "маг";
             this.textLine.TextChanged += new System.EventHandler(this.textLine_TextChanged);
@@ -53,7 +55,7 @@
             // encrypt
             // 
             this.encrypt.BackColor = System.Drawing.SystemColors.Control;
-            this.encrypt.Location = new System.Drawing.Point(25, 202);
+            this.encrypt.Location = new System.Drawing.Point(25, 274);
             this.encrypt.Name = "encrypt";
             this.encrypt.Size = new System.Drawing.Size(102, 33);
             this.encrypt.TabIndex = 1;
@@ -63,7 +65,7 @@
             // 
             // Decrypt
             // 
-            this.Decrypt.Location = new System.Drawing.Point(152, 202);
+            this.Decrypt.Location = new System.Drawing.Point(152, 274);
             this.Decrypt.Name = "Decrypt";
             this.Decrypt.Size = new System.Drawing.Size(102, 33);
             this.Decrypt.TabIndex = 2;
@@ -73,21 +75,26 @@
             // 
             // enCryptText
             // 
-            this.enCryptText.Location = new System.Drawing.Point(25, 101);
+            this.enCryptText.Location = new System.Drawing.Point(24, 112);
+            this.enCryptText.Multiline = true;
             this.enCryptText.Name = "enCryptText";
-            this.enCryptText.Size = new System.Drawing.Size(447, 20);
+            this.enCryptText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.enCryptText.Size = new System.Drawing.Size(447, 59);
             this.enCryptText.TabIndex = 3;
+            this.enCryptText.TextChanged += new System.EventHandler(this.enCryptText_TextChanged);
             // 
             // deCryptText
             // 
-            this.deCryptText.Location = new System.Drawing.Point(25, 161);
+            this.deCryptText.Location = new System.Drawing.Point(25, 196);
+            this.deCryptText.Multiline = true;
             this.deCryptText.Name = "deCryptText";
-            this.deCryptText.Size = new System.Drawing.Size(447, 20);
+            this.deCryptText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.deCryptText.Size = new System.Drawing.Size(447, 69);
             this.deCryptText.TabIndex = 4;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(25, 241);
+            this.pictureBox1.Location = new System.Drawing.Point(25, 330);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(446, 364);
             this.pictureBox1.TabIndex = 5;
@@ -96,7 +103,7 @@
             // 
             // stepEnCrypt
             // 
-            this.stepEnCrypt.Location = new System.Drawing.Point(273, 202);
+            this.stepEnCrypt.Location = new System.Drawing.Point(273, 274);
             this.stepEnCrypt.Name = "stepEnCrypt";
             this.stepEnCrypt.Size = new System.Drawing.Size(147, 33);
             this.stepEnCrypt.TabIndex = 6;
@@ -116,7 +123,7 @@
             // label_encryptText
             // 
             this.label_encryptText.AutoSize = true;
-            this.label_encryptText.Location = new System.Drawing.Point(28, 82);
+            this.label_encryptText.Location = new System.Drawing.Point(28, 96);
             this.label_encryptText.Name = "label_encryptText";
             this.label_encryptText.Size = new System.Drawing.Size(115, 13);
             this.label_encryptText.TabIndex = 8;
@@ -125,7 +132,7 @@
             // label_decryptText
             // 
             this.label_decryptText.AutoSize = true;
-            this.label_decryptText.Location = new System.Drawing.Point(28, 145);
+            this.label_decryptText.Location = new System.Drawing.Point(28, 180);
             this.label_decryptText.Name = "label_decryptText";
             this.label_decryptText.Size = new System.Drawing.Size(121, 13);
             this.label_decryptText.TabIndex = 9;
@@ -135,7 +142,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(492, 617);
+            this.ClientSize = new System.Drawing.Size(492, 726);
             this.Controls.Add(this.label_decryptText);
             this.Controls.Add(this.label_encryptText);
             this.Controls.Add(this.label_inputText);
