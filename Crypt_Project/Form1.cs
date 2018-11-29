@@ -17,6 +17,7 @@ namespace Crypt_Project
         {
             InitializeComponent();
             stringToArray(CryptCode, ref array);
+            NumberOfRows = Math.Round(NumberOfRows, MidpointRounding.AwayFromZero);
         }
 
         //'А','Б','В','Г','Ґ','Д','Е','Є','Ж','З',
@@ -24,14 +25,18 @@ namespace Crypt_Project
         //'Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ',
         //'Ь','Ю','Я'
         static String Alphabet = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ" +
-                          "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя";
+                          "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя" +
+           "ABCDEFGHIJKLMNOPQRSTUVWXYZ"+"abcdefghijklmnopqrstuvwxyzЫыЭэЪъ";
         static int FreeSpace = 40; //40
         static int LettersInLine = 11; //11 
-        static string CryptCode = "-3-127594185493761"; //3827594185493761
+        static string CryptCode = "3827594185493761"; //3827594185493761
         int[] array = new int[] { };
         int i = 0, j = 0;
         bool flag = false; // флаг для обновление строки с зашифрованным текстом
-        int NumberOfRows = Alphabet.Length / LettersInLine;
+        public double NumberOfRows = Alphabet.Length / LettersInLine;
+        
+        //numb;
+        //Round(num, MidpointRounding.AwayFromZero) ;
         Font font = new Font("Times New Roman", 18.0f); //18
 
         public void stringToArray(string inputString, ref int[] array) // разделяет входящую строку на цифры и помещает в массив 
@@ -75,8 +80,8 @@ namespace Crypt_Project
                 else
                 {
                     MessageBox.Show("Символ " + InputChar + " не є символом вхідного алфавіту ");
-                    OutputChar = '-';
-                    return;
+                    OutputChar = InputChar;
+                    //return;
                 }
             }
             else
@@ -86,8 +91,6 @@ namespace Crypt_Project
 
         public void CryptString(string CryptCode, string InputString, ref string Output, bool decrypt)
         {
-            //int[] array = new int[] { };
-            //stringToArray(CryptCode, ref array);
             int j = 0;
             char outputChar = ' ';
             for (int i = 0; i < InputString.Length; i++)
@@ -104,25 +107,73 @@ namespace Crypt_Project
                 }
                 else
                     j = 0;
-                if (outputChar != '-')
+               // if (outputChar != '-')
                     Output += outputChar;
-                else
-                    return;
+                //else
+                //    return;
             }
         }
-
+        Pen Pen = new Pen(Color.Green, 2);
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            for (int j = 0; j < NumberOfRows; j++)
-                for (int i = 0; i < LettersInLine; i++)
-                    TextRenderer.DrawText(e.Graphics, Alphabet[i + (LettersInLine * j)].ToString(), font,
-                    new Point(10 + (FreeSpace * i), 60 + (FreeSpace * j)), SystemColors.ControlDarkDark, TextFormatFlags.WordBreak);
-            //string InputText += InputText[i];
-            //TextRenderer.DrawText(e.Graphics, InputText, font,
-            //        new Point(0, 0), SystemColors.ControlDarkDark);
-            //for (int j = 0; j < 2; j++)
-            //    TextRenderer.DrawText(e.Graphics, InputText, font,
-            //        new Point(0, 0), SystemColors.ControlDarkDark, TextFormatFlags.WordBreak);
+            //for (int j = 0; j < NumberOfRows; j++)
+            //    for (int i = 0; i < LettersInLine; i++)
+            //        TextRenderer.DrawText(e.Graphics, Alphabet[i + (LettersInLine * j)].ToString(), font,
+            //        new Point(30 + (FreeSpace * i), 60 + (FreeSpace * j)), SystemColors.ControlDarkDark);
+            //foreach (Alph) ;
+            int f = 0, n = 0;
+            foreach (char c in Alphabet) 
+            {
+                
+                if (n == LettersInLine)
+                {
+                    f++;
+                    n = 0;
+                }
+                TextRenderer.DrawText(e.Graphics, c.ToString(), font,
+                    new Point(30 + (FreeSpace * n), 0 + (FreeSpace * f)), SystemColors.ControlDarkDark);
+                n++;
+            }
+            
+        }
+
+        private void pictureBox2_Paint(object sender, PaintEventArgs e)
+        {
+            string InputText = textLine.Text;
+            e.Graphics.DrawRectangle(Pen, 0, 0, 90, 30);
+            if (InputText != "" && InputText[i].ToString() != " ")
+            {
+                TextRenderer.DrawText(e.Graphics, InputText[i].ToString() + "\t + (" + array[j] + ")", font,
+                   new Point(0, 0), SystemColors.ControlDarkDark);
+                if (enCryptText.Text != "")
+                    TextRenderer.DrawText(e.Graphics, enCryptText.Text[i].ToString(), font,
+                       new Point(440, 0), SystemColors.ControlDarkDark);
+            }
+            for (int k = 0; k < Math.Abs(array[j]) - 1; k++)
+            {
+                e.Graphics.DrawRectangle(Pen, 70 + (40 * (k + 1)), 0, 27, 30);
+                int index = 0;
+                if (InputText != "" && Alphabet.IndexOf(InputText[i]) != -1)
+                {
+                    if (array[j] <= 0)
+                    {
+                        index = Alphabet.IndexOf(InputText[i]) - k - 1;
+                        if (index <= 0)
+                            index = index + Alphabet.Length;
+                    }
+                    else if (array[j] > 0)
+                    {
+                        index = Alphabet.IndexOf(InputText[i]) + k + 1;
+                        if (index >= Alphabet.Length)
+                            index = index - Alphabet.Length;
+                    }
+
+                    TextRenderer.DrawText(e.Graphics, Alphabet[index].ToString(), font,
+                       new Point(70 + (40 * (k + 1)), 0), SystemColors.ControlDarkDark);
+                }
+
+            }
+            e.Graphics.DrawRectangle(Pen, 440, 0, 27, 30);
             TextRenderer.DrawText(e.Graphics, CryptCode, font,
                     new Point(0, 30), SystemColors.ControlDarkDark);
         }
@@ -139,7 +190,8 @@ namespace Crypt_Project
 
         private void textLine_TextChanged(object sender, EventArgs e)
         {
-            pictureBox1.Refresh(); 
+            pictureBox1.Refresh();
+            pictureBox2.Refresh();
             refresh_stepEnCrypt(); //если входящий текст меняется - обнулить данные  для пошагового шифрования
         }
 
@@ -161,7 +213,7 @@ namespace Crypt_Project
 
         private void enCryptText_TextChanged(object sender, EventArgs e)
         {
-            pictureBox1.Refresh();
+            pictureBox2.Refresh();
         }
 
         private void stepEnCrypt_Click(object sender, EventArgs e)

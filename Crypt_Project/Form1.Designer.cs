@@ -38,7 +38,11 @@
             this.label_inputText = new System.Windows.Forms.Label();
             this.label_encryptText = new System.Windows.Forms.Label();
             this.label_decryptText = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // textLine
@@ -47,7 +51,7 @@
             this.textLine.Multiline = true;
             this.textLine.Name = "textLine";
             this.textLine.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textLine.Size = new System.Drawing.Size(447, 49);
+            this.textLine.Size = new System.Drawing.Size(498, 49);
             this.textLine.TabIndex = 0;
             this.textLine.Text = "маг";
             this.textLine.TextChanged += new System.EventHandler(this.textLine_TextChanged);
@@ -79,7 +83,7 @@
             this.enCryptText.Multiline = true;
             this.enCryptText.Name = "enCryptText";
             this.enCryptText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.enCryptText.Size = new System.Drawing.Size(447, 59);
+            this.enCryptText.Size = new System.Drawing.Size(498, 59);
             this.enCryptText.TabIndex = 3;
             this.enCryptText.TextChanged += new System.EventHandler(this.enCryptText_TextChanged);
             // 
@@ -89,14 +93,14 @@
             this.deCryptText.Multiline = true;
             this.deCryptText.Name = "deCryptText";
             this.deCryptText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.deCryptText.Size = new System.Drawing.Size(447, 69);
+            this.deCryptText.Size = new System.Drawing.Size(497, 69);
             this.deCryptText.TabIndex = 4;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(25, 330);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(446, 364);
+            this.pictureBox1.Size = new System.Drawing.Size(477, 1000);
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
@@ -138,24 +142,46 @@
             this.label_decryptText.TabIndex = 9;
             this.label_decryptText.Text = "Розшифрований текст";
             // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Location = new System.Drawing.Point(25, 397);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(497, 317);
+            this.panel1.TabIndex = 10;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(25, 322);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(477, 69);
+            this.pictureBox2.TabIndex = 11;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox2_Paint);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(492, 726);
+            this.ClientSize = new System.Drawing.Size(550, 726);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.label_decryptText);
             this.Controls.Add(this.label_encryptText);
             this.Controls.Add(this.label_inputText);
             this.Controls.Add(this.stepEnCrypt);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.deCryptText);
             this.Controls.Add(this.enCryptText);
             this.Controls.Add(this.Decrypt);
             this.Controls.Add(this.encrypt);
             this.Controls.Add(this.textLine);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "Шифр Гронсфельда";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,6 +199,8 @@
         private System.Windows.Forms.Label label_inputText;
         private System.Windows.Forms.Label label_encryptText;
         private System.Windows.Forms.Label label_decryptText;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 
