@@ -45,19 +45,40 @@ namespace Crypt_Project
             {
                 if (inputString[i] == '-')
                 {
-                    i++;
-                    buffer += inputString[i - 1];
+                    if (i + 1 < inputString.Length && Char.IsDigit(inputString[i + 1]))
+                    {
+                        i++;
+                        buffer += inputString[i - 1];
+                        buffer += inputString[i];
+                    }
+                    else if (i < inputString.Length)
+                    {
+                        MessageBox.Show(inputString[i] + " Не є частиною коду.");
+                        buffer = "";
+                        i++;
+                        return;
+                    }
+                }
+                else if (Char.IsDigit(inputString[i]))
+                {
                     buffer += inputString[i];
                 }
                 else
                 {
-                    buffer += inputString[i];
+                    MessageBox.Show(inputString[i] + " Не є частиною коду.");
+                    return;
                 }
-                int number = Convert.ToInt32(buffer);
-                list.Add(number);
-                buffer = "";
+                if (buffer != "")
+                {
+                    int number = Convert.ToInt32(buffer);
+                    list.Add(number);
+                    buffer = "";
+                }
             }
-            array = list.ToArray();
+            if (list.Any()) { 
+                array = list.ToArray();
+                CryptCode = inputString;
+            }
         }
 
         public void EncrypCharacter(int CryptNumb, char InputChar, ref char OutputChar)
@@ -217,10 +238,15 @@ namespace Crypt_Project
         private void cryptCodeTextBox_TextChanged(object sender, EventArgs e)
         {
             refresh_stepEnCrypt();
-            CryptCode = cryptCodeTextBox.Text;
-            enCryptText.Text = "";
-            stringToArray(CryptCode, ref array);
-            pictureBox2.Refresh();
+            
+            
+            stringToArray(cryptCodeTextBox.Text, ref array);
+            if (array.Length != 0)
+            {
+                enCryptText.Text = "";
+                //CryptCode = cryptCodeTextBox.Text;
+                pictureBox2.Refresh();
+            }
             
         }
 

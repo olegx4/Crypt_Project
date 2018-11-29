@@ -150,7 +150,7 @@
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Location = new System.Drawing.Point(25, 397);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(497, 317);
+            this.panel1.Size = new System.Drawing.Size(497, 194);
             this.panel1.TabIndex = 10;
             // 
             // pictureBox2
@@ -183,7 +183,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(550, 726);
+            this.ClientSize = new System.Drawing.Size(550, 604);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cryptCodeTextBox);
             this.Controls.Add(this.pictureBox2);
@@ -197,7 +197,6 @@
             this.Controls.Add(this.Decrypt);
             this.Controls.Add(this.encrypt);
             this.Controls.Add(this.textLine);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "Шифр Гронсфельда";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
