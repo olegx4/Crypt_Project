@@ -40,6 +40,8 @@
             this.label_decryptText = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.cryptCodeTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -160,11 +162,30 @@
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox2_Paint);
             // 
+            // cryptCodeTextBox
+            // 
+            this.cryptCodeTextBox.Location = new System.Drawing.Point(259, 18);
+            this.cryptCodeTextBox.Name = "cryptCodeTextBox";
+            this.cryptCodeTextBox.Size = new System.Drawing.Size(213, 20);
+            this.cryptCodeTextBox.TabIndex = 12;
+            this.cryptCodeTextBox.TextChanged += new System.EventHandler(this.cryptCodeTextBox_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(261, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(120, 13);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Ключ для шифрування";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(550, 726);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cryptCodeTextBox);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label_decryptText);
@@ -201,6 +222,8 @@
         private System.Windows.Forms.Label label_decryptText;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.TextBox cryptCodeTextBox;
+        private System.Windows.Forms.Label label1;
     }
 }
 

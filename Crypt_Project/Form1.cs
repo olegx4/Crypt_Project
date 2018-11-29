@@ -214,6 +214,16 @@ namespace Crypt_Project
             pictureBox2.Refresh();
         }
 
+        private void cryptCodeTextBox_TextChanged(object sender, EventArgs e)
+        {
+            refresh_stepEnCrypt();
+            CryptCode = cryptCodeTextBox.Text;
+            enCryptText.Text = "";
+            stringToArray(CryptCode, ref array);
+            pictureBox2.Refresh();
+            
+        }
+
         private void stepEnCrypt_Click(object sender, EventArgs e)
         {
             string InputText = textLine.Text;
