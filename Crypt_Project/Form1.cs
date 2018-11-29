@@ -26,7 +26,7 @@ namespace Crypt_Project
         //'Ь','Ю','Я'
         static String Alphabet = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ" +
                           "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя" +
-           "ABCDEFGHIJKLMNOPQRSTUVWXYZ"+"abcdefghijklmnopqrstuvwxyzЫыЭэЪъ";
+           "ABCDEFGHIJKLMNOPQRSTUVWXYZ"+"abcdefghijklmnopqrstuvwxyzЫыЭэЪъ, .-";
         static int FreeSpace = 40; //40
         static int LettersInLine = 11; //11 
         static string CryptCode = "3827594185493761"; //3827594185493761
@@ -34,9 +34,7 @@ namespace Crypt_Project
         int i = 0, j = 0;
         bool flag = false; // флаг для обновление строки с зашифрованным текстом
         public double NumberOfRows = Alphabet.Length / LettersInLine;
-        
-        //numb;
-        //Round(num, MidpointRounding.AwayFromZero) ;
+        Pen Pen = new Pen(Color.Green, 2);
         Font font = new Font("Times New Roman", 18.0f); //18
 
         public void stringToArray(string inputString, ref int[] array) // разделяет входящую строку на цифры и помещает в массив 
@@ -65,8 +63,8 @@ namespace Crypt_Project
         public void EncrypCharacter(int CryptNumb, char InputChar, ref char OutputChar)
         {
             int IndexOfLetter = 0;
-            if (InputChar != ' ')
-            {
+            //if (InputChar != ' ')
+            //{
                 if (Alphabet.IndexOf(InputChar) != -1)
                 {
                     IndexOfLetter = Alphabet.IndexOf(InputChar) + CryptNumb; //Криптографическая стойкость – способность криптографического алгоритма противостоять криптоанализу
@@ -83,9 +81,9 @@ namespace Crypt_Project
                     OutputChar = InputChar;
                     //return;
                 }
-            }
-            else
-                OutputChar = ' ';
+            //}
+            //else
+            //    OutputChar = ' ';
 
         }
 
@@ -113,7 +111,7 @@ namespace Crypt_Project
                 //    return;
             }
         }
-        Pen Pen = new Pen(Color.Green, 2);
+        
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             //for (int j = 0; j < NumberOfRows; j++)
@@ -141,7 +139,7 @@ namespace Crypt_Project
         {
             string InputText = textLine.Text;
             e.Graphics.DrawRectangle(Pen, 0, 0, 90, 30);
-            if (InputText != "" && InputText[i].ToString() != " ")
+            if (InputText != "" /*&& InputText[i].ToString() != " "*/)
             {
                 TextRenderer.DrawText(e.Graphics, InputText[i].ToString() + "\t + (" + array[j] + ")", font,
                    new Point(0, 0), SystemColors.ControlDarkDark);
@@ -230,7 +228,7 @@ namespace Crypt_Project
                 EncrypCharacter(array[j], InputText[i], ref OutputChar);
 
                 enCryptText.Text += OutputChar;
-                if (OutputChar != ' ')
+                //if (OutputChar != ' ')
                     j++;
             }
 
