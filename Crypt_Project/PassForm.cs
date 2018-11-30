@@ -8,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
+
+
 
 namespace Crypt_Project
 {
@@ -55,14 +58,20 @@ namespace Crypt_Project
                 string chance;
                 if (6 - count == 2 || 6 - count == 3 || 6 - count == 4)
                     chance = " спроби!";
-                else if(6 - count == 5)
+                else if (6 - count == 5)
                     chance = " спроб!";
                 else
                     chance = " спроба!";
                 MessageBox.Show("Ви ввели неправильний пароль! Залишилось " + (6 - count) + chance);
             }
+
             if (count == 6)
+            {
                 this.Close();
+                reboot r = new reboot();
+                r.halt(true, false); //мягкая перезагрузка
+                //halt(true, true) //жесткая перезагрузка
+            }
             fs.Close();
 
             //sw.Close();
