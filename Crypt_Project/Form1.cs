@@ -26,7 +26,7 @@ namespace Crypt_Project
         //'Ь','Ю','Я'
         static String Alphabet = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ" +
                           "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя" +
-           "ABCDEFGHIJKLMNOPQRSTUVWXYZ"+"abcdefghijklmnopqrstuvwxyzЫыЭэЪъ, .-";
+           "ABCDEFGHIJKLMNOPQRSTUVWXYZ"+"abcdefghijklmnopqrstuvwxyzЫыЭэЪъ, .-1234567890";
         static int FreeSpace = 40; //40
         static int LettersInLine = 11; //11 
         static string CryptCode = "3827594185493761"; //3827594185493761
@@ -98,7 +98,7 @@ namespace Crypt_Project
                 }
                 else
                 {
-                    MessageBox.Show("Символ " + InputChar + " не є символом вхідного алфавіту ");
+                   // MessageBox.Show("Символ " + InputChar + " не є символом вхідного алфавіту ");
                     OutputChar = InputChar;
                     //return;
                 }
@@ -112,6 +112,7 @@ namespace Crypt_Project
         {
             int j = 0;
             char outputChar = ' ';
+            stringToArray(CryptCode, ref array);
             for (int i = 0; i < InputString.Length; i++)
             {
                 if (decrypt)
@@ -243,7 +244,7 @@ namespace Crypt_Project
             stringToArray(cryptCodeTextBox.Text, ref array);
             if (array.Length != 0)
             {
-                enCryptText.Text = "";
+                //enCryptText.Text = "";
                 //CryptCode = cryptCodeTextBox.Text;
                 pictureBox2.Refresh();
             }
