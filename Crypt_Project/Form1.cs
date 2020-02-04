@@ -234,6 +234,7 @@ namespace Crypt_Project
         private void enCryptText_TextChanged(object sender, EventArgs e)
         {
             pictureBox2.Refresh();
+            //refresh_stepEnCrypt();
         }
 
         private void cryptCodeTextBox_TextChanged(object sender, EventArgs e)

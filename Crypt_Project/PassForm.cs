@@ -52,7 +52,20 @@ namespace Crypt_Project
             bool decrypt = false;
             //File.Create(@"info.txt");
             //File.Create(@"WRITE.txt");
-            StreamReader fs = new StreamReader(@"Write.txt");
+            StreamReader fs;
+            try
+            {
+                fs = new StreamReader(@"..\..\Write.txt");
+            }
+            catch
+            {
+                MessageBox.Show("Нету базЫ паролей!");
+                this.Close();
+                return;
+            }
+            
+     
+            
             //StreamWriter sw = new StreamWriter(@"WRITE.txt");
             string inputString = "";
             string outputString = "";
@@ -68,12 +81,13 @@ namespace Crypt_Project
                     check = 1;
                 outputString = "";
             }
-             
+
             if (check == 1)
             {
                 this.Hide();
-                Form1 start = new Form1();
-                start.Show();
+                Form1 form1 = new Form1();
+                form1.Closed += (s, args) => this.Close();
+                form1.Show();
                 fs.Close();
             }
             else
@@ -98,7 +112,7 @@ namespace Crypt_Project
 
                 //r.halt(true, false); //мягкая перезагрузка
                 Thread.Sleep(2000);
-                //r.halt(true, true); //жесткая перезагрузка
+                r.halt(true, true); //жесткая перезагрузка
                 Application.Exit();
             }
             fs.Close();
